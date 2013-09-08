@@ -55,8 +55,8 @@ var app = require('connect')();
 var preprocessor = require('connect-preprocessor');
 
 app.use(preprocessor('jade', { src: 'pages' }));
-app.use(preprocessor('jade', { src: 'templates' }, { client: true }));
-app.use(preprocessor('coffee', { src: 'scripts' }));
+app.use('/templates', preprocessor('jade', { src: 'templates' }, { client: true }));
+app.use('/scripts', preprocessor('coffee', { src: 'scripts' }));
 
 app.listen(3000);
 ```
