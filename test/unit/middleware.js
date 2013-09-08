@@ -100,6 +100,21 @@ describe('connect-preprocessor', function () {
     it('should have js mime type', function () {
       expect(mime).to.eql('application/javascript');
     });
+
+    describe('on the second request', function () {
+
+      before(function (done) {
+        get('/coffee.js', function (status, type, data) {
+          mime = type;
+          body = data;
+          done();
+        });
+      });
+
+      it('should not alter options hash', function () {
+        expect(body).to.eql(expected);
+      });
+    });
   });
 
 });
