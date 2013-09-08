@@ -45,7 +45,7 @@ describe('connect-preprocessor', function () {
 
     before(function (done) {
       expected = fixture('index_expected.html');
-      get('', function (status, type, data) {
+      get('/', function (status, type, data) {
 				mime = type;
         body = data;
         done();
@@ -60,6 +60,26 @@ describe('connect-preprocessor', function () {
 			expect(mime).to.eql('text/html');
 		});
 
+  });
+
+  describe('loading js with jade preprocessor', function () {
+    
+    before(function (done) {
+      expected = fixture('jade_templates_expected.js');
+      get('/jade_templates.js', function (status, type, data) {
+        mime = type;
+        body = data;
+        done();
+      });
+    });
+
+    it('should return a compiled js file', function () {
+      expect(body).to.eql(expected);
+    });
+
+    it('should have js mime type', function () {
+      expect(mime).to.eql('application/javascript');
+    });
   });
 
 });

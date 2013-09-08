@@ -12,7 +12,8 @@ module.exports = function (grunt) {
         options: {
           middleware: function () {
             return [
-              preprocessor('jade', { src: 'test/fixtures' })
+              preprocessor('jade', { src: 'test/fixtures' }),
+              preprocessor('jade', { src: 'test/fixtures' }, { client: true })
             ];
           }
         },
@@ -20,7 +21,7 @@ module.exports = function (grunt) {
     },
 
     jshint: {
-      all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+      all: ['Gruntfile.js', 'lib/**/*.js', 'test/unit/**/*.js'],
       options: {
         curly: true,
         eqeqeq: true,

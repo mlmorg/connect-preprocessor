@@ -54,7 +54,8 @@ Any additional options to pass on to the compiler.
 var app = require('connect')();
 var preprocessor = require('connect-preprocessor');
 
-app.use(preprocessor('jade', { src: 'pages' });
+app.use(preprocessor('jade', { src: 'pages' }));
+app.use(preprocessor('jade', { src: 'scripts' }, { client: true }));
 
 app.listen(3000);
 ```
