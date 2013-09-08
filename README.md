@@ -91,4 +91,4 @@ source files.
 A string (or function that returns a string) specifying the extension of the
 compiled files.
 
-An example can be seen [here](lib/jade.js).
+An example can be seen [here](lib/compilers/jade.js).
