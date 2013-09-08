@@ -65,8 +65,8 @@ describe('connect-preprocessor', function () {
   describe('loading js with jade preprocessor', function () {
     
     before(function (done) {
-      expected = fixture('jade_templates_expected.js');
-      get('/jade_templates.js', function (status, type, data) {
+      expected = fixture('jade_client_expected.js');
+      get('/jade_client.js', function (status, type, data) {
         mime = type;
         body = data;
         done();
@@ -79,6 +79,22 @@ describe('connect-preprocessor', function () {
 
     it('should have js mime type', function () {
       expect(mime).to.eql('application/javascript');
+    });
+
+    describe('when amd option is true', function () {
+      
+      before(function (done) {
+        expected = fixture('jade_amd_expected.js');
+        get('/jade_amd.js', function (status, type, data) {
+          body = data;
+          done();
+        });
+      });
+
+      it('should return the compiled js file wrapped in amd', function () {
+        expect(body).to.eql(expected);
+      });
+
     });
   });
 
