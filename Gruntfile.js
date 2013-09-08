@@ -13,7 +13,8 @@ module.exports = function (grunt) {
           middleware: function () {
             return [
               preprocessor('jade', { src: 'test/fixtures' }),
-              preprocessor('jade', { src: 'test/fixtures' }, { client: true })
+              preprocessor('jade', { src: 'test/fixtures' }, { client: true }),
+              preprocessor('coffee', { src: 'test/fixtures' })
             ];
           }
         },

@@ -55,7 +55,8 @@ var app = require('connect')();
 var preprocessor = require('connect-preprocessor');
 
 app.use(preprocessor('jade', { src: 'pages' }));
-app.use(preprocessor('jade', { src: 'scripts' }, { client: true }));
+app.use(preprocessor('jade', { src: 'templates' }, { client: true }));
+app.use(preprocessor('coffee', { src: 'scripts' }));
 
 app.listen(3000);
 ```
@@ -64,6 +65,9 @@ app.listen(3000);
 
 - [Jade](http://jade-lang.com/) -
 Specified as `jade`.
+
+- [CoffeeScript](http://coffeescript.org/) -
+Specified as `coffee`.
 
 ### Compiler exports
 

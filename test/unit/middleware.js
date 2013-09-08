@@ -82,4 +82,24 @@ describe('connect-preprocessor', function () {
     });
   });
 
+  describe('loading js with coffee preproecssor', function () {
+
+    before(function (done) {
+      expected = fixture('coffee_expected.js');
+      get('/coffee.js', function (status, type, data) {
+        mime = type;
+        body = data;
+        done();
+      });
+    });
+
+    it('should return a compiled js file', function () {
+      expect(body).to.eql(expected);
+    });
+
+    it('should have js mime type', function () {
+      expect(mime).to.eql('application/javascript');
+    });
+  });
+
 });
