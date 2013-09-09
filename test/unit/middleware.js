@@ -149,4 +149,25 @@ describe('connect-preprocessor', function () {
 
   });
 
+  describe('loading css with less preprocessor', function () {
+
+    before(function (done) {
+      expected = fixture('less_expected.css');
+      get('/less.css', function (status, type, data) {
+        mime = type;
+        body = data;
+        done();
+      });
+    });
+
+    it('should return a compiled css file', function () {
+      expect(body).to.eql(expected);
+    });
+
+    it('should have css mime type', function () {
+      expect(mime).to.eql('text/css');
+    });
+
+  });
+
 });

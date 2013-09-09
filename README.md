@@ -69,6 +69,9 @@ Specified as `jade`.
 - [CoffeeScript](http://coffeescript.org/) -
 Specified as `coffee`.
 
+- [Less](http://lesscss.org/) -
+Specified as `less`.
+
 ### Compiler exports
 
 If the compiler you need does not exist, feel free to make a pull request.

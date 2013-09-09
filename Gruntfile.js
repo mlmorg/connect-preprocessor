@@ -18,7 +18,8 @@ module.exports = function (grunt) {
                 amd: true,
               }),
               preprocessor('jade', { src: 'test/fixtures' }, { client: true }),
-              preprocessor('coffee', { src: 'test/fixtures' })
+              preprocessor('coffee', { src: 'test/fixtures' }),
+              preprocessor('less', { src: 'test/fixtures' })
             ];
           }
         },
