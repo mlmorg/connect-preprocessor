@@ -133,4 +133,20 @@ describe('connect-preprocessor', function () {
     });
   });
 
+  describe('loading file with query parameters', function () {
+    
+    before(function (done) {
+      expected = fixture('coffee_expected.js');
+      get('/coffee.js?foo=bar', function (status, type, data) {
+        body = data;
+        done();
+      });
+    });
+
+    it('should disregard the query parameters', function () {
+      expect(body).to.eql(expected);
+    });
+
+  });
+
 });
