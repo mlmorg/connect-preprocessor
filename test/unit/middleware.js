@@ -60,6 +60,21 @@ describe('connect-preprocessor', function () {
 			expect(mime).to.eql('text/html');
 		});
 
+    describe('when an error exists in the jade', function () {
+      
+      before(function (done) {
+        get('/jade_errors.html', function (status) {
+          code = status;
+          done();
+        });
+      });
+
+      it('should return a 500', function () {
+        expect(code).to.eql(500);
+      });
+
+    });
+
   });
 
   describe('loading js with jade preprocessor', function () {
@@ -131,6 +146,22 @@ describe('connect-preprocessor', function () {
         expect(body).to.eql(expected);
       });
     });
+
+    describe('when there are errors in the coffee', function () {
+
+      before(function (done) {
+        get('/coffee_errors.js', function (status, type, data) {
+          code = status;
+          done();
+        });
+      });
+
+      it('should return a 500', function () {
+        expect(code).to.eql(500);
+      });
+
+    });
+
   });
 
   describe('loading file with query parameters', function () {
@@ -166,6 +197,21 @@ describe('connect-preprocessor', function () {
 
     it('should have css mime type', function () {
       expect(mime).to.eql('text/css');
+    });
+
+    describe('when there are errors in the less', function () {
+
+      before(function (done) {
+        get('/less_errors.css', function (status, type, data) {
+          code = status;
+          done();
+        });
+      });
+
+      it('should return a 500', function () {
+        expect(code).to.eql(500);
+      });
+
     });
 
   });
