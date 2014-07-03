@@ -1,5 +1,5 @@
 function anonymous(locals) {
-jade.debug = [{ lineno: 1, filename: undefined }];
+jade.debug = [{ lineno: 1, filename: "test/fixtures/jade_client.jade" }];
 try {
 var buf = [];
 var locals_ = (locals || {}),title = locals_.title;jade.debug.unshift({ lineno: 1, filename: jade.debug[0].filename });

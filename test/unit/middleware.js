@@ -63,7 +63,7 @@ describe('connect-preprocessor', function () {
   });
 
   describe('loading js with jade preprocessor', function () {
-    
+
     before(function (done) {
       expected = fixture('jade_client_expected.js');
       get('/jade_client.js', function (status, type, data) {
@@ -82,7 +82,7 @@ describe('connect-preprocessor', function () {
     });
 
     describe('when amd option is true', function () {
-      
+
       before(function (done) {
         expected = fixture('jade_amd_expected.js');
         get('/jade_amd.js', function (status, type, data) {
@@ -99,27 +99,9 @@ describe('connect-preprocessor', function () {
   });
 
   describe('loading js with coffee preproecssor', function () {
-
-    before(function (done) {
-      expected = fixture('coffee_expected.js');
-      get('/coffee.js', function (status, type, data) {
-        mime = type;
-        body = data;
-        done();
-      });
-    });
-
-    it('should return a compiled js file', function () {
-      expect(body).to.eql(expected);
-    });
-
-    it('should have js mime type', function () {
-      expect(mime).to.eql('application/javascript');
-    });
-
-    describe('on the second request', function () {
-
+    describe('that succeeds', function () {
       before(function (done) {
+        expected = fixture('coffee_expected.js');
         get('/coffee.js', function (status, type, data) {
           mime = type;
           body = data;
@@ -127,14 +109,47 @@ describe('connect-preprocessor', function () {
         });
       });
 
-      it('should not alter options hash', function () {
+      it('should return a compiled js file', function () {
         expect(body).to.eql(expected);
+      });
+
+      it('should have js mime type', function () {
+        expect(mime).to.eql('application/javascript');
+      });
+
+      describe('on the second request', function () {
+
+        before(function (done) {
+          get('/coffee.js', function (status, type, data) {
+            mime = type;
+            body = data;
+            done();
+          });
+        });
+
+        it('should not alter options hash', function () {
+          expect(body).to.eql(expected);
+        });
+      });
+    });
+
+    describe('that fails', function () {
+      before(function (done) {
+        get('/coffee-fail.js', function (status, type, data) {
+          mime = type;
+          body = data;
+          done();
+        });
+      });
+
+      it('should show error message', function () {
+        expect(body).to.eql('Error: unmatched } at line 0 in file test/fixtures/coffee-fail.coffee');
       });
     });
   });
 
   describe('loading file with query parameters', function () {
-    
+
     before(function (done) {
       expected = fixture('coffee_expected.js');
       get('/coffee.js?foo=bar', function (status, type, data) {

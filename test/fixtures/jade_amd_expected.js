@@ -1,6 +1,6 @@
 define(['jade'], function(jade) { if(jade && jade['runtime'] !== undefined) { jade = jade.runtime; }
 return function anonymous(locals) {
-jade.debug = [{ lineno: 1, filename: undefined }];
+jade.debug = [{ lineno: 1, filename: "test/fixtures/jade_amd.jade" }];
 try {
 var buf = [];
 var locals_ = (locals || {}),title = locals_.title;jade.debug.unshift({ lineno: 1, filename: jade.debug[0].filename });
