@@ -143,7 +143,7 @@ describe('connect-preprocessor', function () {
       });
 
       it('should show error message', function () {
-        expect(body).to.eql('Error: unmatched } at line 0 in file test/fixtures/coffee-fail.coffee');
+        expect(body).to.eql('Error compiling file');
       });
     });
   });
